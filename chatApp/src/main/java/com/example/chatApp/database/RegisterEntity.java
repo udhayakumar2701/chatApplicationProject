@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class registerEntity {
+public class RegisterEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="userId")
@@ -22,7 +22,7 @@ public class registerEntity {
     @Column(name="password")
     String password;
 
-   public  registerEntity(String userName,String password){
+   public RegisterEntity(String userName, String password){
         this.userName=userName;
         this.password=password;
     }

@@ -1,13 +1,13 @@
 package com.example.chatApp.repository;
 
-import com.example.chatApp.database.registerEntity;
+import com.example.chatApp.database.RegisterEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface userRepo extends JpaRepository<registerEntity,Long> {
+public interface UserRepo extends JpaRepository<RegisterEntity,Long> {
 
-    registerEntity findByUserName(String userName);
+    RegisterEntity findByUserName(String userName);
 
     boolean existsByUserName(String userName);
 }

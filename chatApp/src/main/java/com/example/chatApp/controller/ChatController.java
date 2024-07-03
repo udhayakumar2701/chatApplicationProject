@@ -2,19 +2,19 @@ package com.example.chatApp.controller;
 
 
 
-import org.springframework.messaging.Message;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-@RequestMapping(value = "/chat")
-@CrossOrigin(origins = "http://localhost:8080")
-public class chatController {
+@RestController
+@RequestMapping("/chat")
+@CrossOrigin(origins = "http://localhost:3000")
+public class ChatController {
 
+    @GetMapping("/specificUser")
+    public ResponseEntity<?> specificChat(@RequestParam("userId") String userId){
+        System.out.println(userId);
+        return new ResponseEntity<>("User", HttpStatus.OK);
 
-    public Message sendMessage(Message message) {
-        return message;
     }
 }

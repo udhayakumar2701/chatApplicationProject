@@ -27,7 +27,12 @@ const Login = () => {
             console.log(response.data);
 
             // Redirect user to another page upon successful login
-            navigate('/'); // You can pass state here if needed
+            // navigate('/');
+            navigate('/', {
+                state: {
+                    userData: response.data,
+                    username: username  // Additional data you want to pass
+                }});
 
         } catch (error) {
             console.error("Error during login:", error);

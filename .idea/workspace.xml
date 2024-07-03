@@ -4,7 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9f13f25-646a-4f60-b44b-6853d5726d6c" name="Changes" comment="" />
+    <list default="true" id="d9f13f25-646a-4f60-b44b-6853d5726d6c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatApp/src/main/java/com/example/chatApp/controller/chatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/chatApp/src/main/java/com/example/chatApp/controller/ChatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatApp/src/main/java/com/example/chatApp/controller/loginRegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/chatApp/src/main/java/com/example/chatApp/controller/LoginRegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatApp/src/main/java/com/example/chatApp/database/registerEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/chatApp/src/main/java/com/example/chatApp/database/RegisterEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatApp/src/main/java/com/example/chatApp/model/loginModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/chatApp/src/main/java/com/example/chatApp/model/LoginModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatApp/src/main/java/com/example/chatApp/model/registerModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/chatApp/src/main/java/com/example/chatApp/model/RegisterModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatApp/src/main/java/com/example/chatApp/repository/userRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/chatApp/src/main/java/com/example/chatApp/repository/UserRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatApp/src/main/java/com/example/chatApp/service/LRService.java" beforeDir="false" afterPath="$PROJECT_DIR$/chatApp/src/main/java/com/example/chatApp/service/LRService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatApp/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/chatApp/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatApp/target/classes/com/example/chatApp/controller/chatController.class" beforeDir="false" afterPath="$PROJECT_DIR$/chatApp/target/classes/com/example/chatApp/controller/chatController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatApp/target/classes/com/example/chatApp/controller/loginRegisterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/chatApp/target/classes/com/example/chatApp/controller/loginRegisterController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatApp/target/classes/com/example/chatApp/database/registerEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/chatApp/target/classes/com/example/chatApp/database/registerEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatApp/target/classes/com/example/chatApp/model/loginModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/chatApp/target/classes/com/example/chatApp/model/loginModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatApp/target/classes/com/example/chatApp/model/registerModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/chatApp/target/classes/com/example/chatApp/model/registerModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatApp/target/classes/com/example/chatApp/repository/userRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/chatApp/target/classes/com/example/chatApp/repository/userRepo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatApp/target/classes/com/example/chatApp/service/LRService.class" beforeDir="false" afterPath="$PROJECT_DIR$/chatApp/target/classes/com/example/chatApp/service/LRService.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,11 +32,12 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/front-end" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -32,7 +51,8 @@
   "keyToString": {
     "Application.ChatAppApplication.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/chatApplicationProject"
   }
