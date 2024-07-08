@@ -7,6 +7,6 @@ import lombok.Data;
 public class FriendModel {
 
 
-    String UserId;
+    String userId;
     String frdId;
 }

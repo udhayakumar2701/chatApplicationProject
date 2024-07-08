@@ -28,7 +28,7 @@ const Login = () => {
 
             // Redirect user to another page upon successful login
             // navigate('/');
-            navigate('/', {
+            navigate('/home', {
                 state: {
                     userData: response.data,
                     username: username  // Additional data you want to pass

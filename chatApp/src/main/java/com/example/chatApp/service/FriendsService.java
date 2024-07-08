@@ -5,6 +5,8 @@ import com.example.chatApp.database.RegisterEntity;
 import com.example.chatApp.model.FriendModel;
 import com.example.chatApp.repository.FriendRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,12 +28,20 @@ public class FriendsService {
     }
 
     // Methods is used to add the new friends to Chat
-    public void addFriends(FriendModel friendModel ){
-        if(isPresent(friendModel.getFrdId())){
+    public ResponseEntity<?> addFriends(FriendModel friendModel ){
+        FrdsEntity first=isPresentInFriendEnttity(friendModel.getUserId(),friendModel.getFrdId());
+        FrdsEntity second=isPresentInFriendEnttity(friendModel.getFrdId(),friendModel.getUserId());
+
+        if(first!=null || second!=null){
+            return new ResponseEntity<>("You Two are Already Friend ",HttpStatus.BAD_REQUEST);
+        }
+        else if(isPresent(friendModel.getFrdId())){
             friendRepo.save(new FrdsEntity(friendModel.getUserId(),friendModel.getFrdId()));
             FrdsEntity frd=findUserById(friendModel.getUserId(),friendModel.getFrdId());
              messageService.addNewMessageList(frd);// This line is used to create new chat for the users
+            return new ResponseEntity<>("Add SuccessFully", HttpStatus.OK);
         }
+        return new ResponseEntity<>("Friend Id is Wrong",HttpStatus.UNAUTHORIZED);
     }
 
     // Mehtod is used to find the user from the database(FrdsEntity DB)
@@ -54,5 +64,10 @@ public class FriendsService {
 
     public List<FrdsEntity> findByFriendId(String friendId){
         return friendRepo.findAllByFrdId(friendId);
+    }
+
+
+    public FrdsEntity isPresentInFriendEnttity(String userId,String frdId){
+        return friendRepo.findByUserIdAndFrdId(userId,frdId);
     }
 }
