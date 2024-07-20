@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'; 
 
-const Login = () => {
+const Login = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate(); // Use the useNavigate hook
@@ -28,6 +28,7 @@ const Login = () => {
 
             // Redirect user to another page upon successful login
             // navigate('/');
+            props.handleAuth(username);
             navigate('/home', {
                 state: {
                     userData: response.data,

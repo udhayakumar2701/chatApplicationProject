@@ -8,12 +8,13 @@ const Home = () => {
     const [showProfile, setShowProfile] = useState(false);
     const [userData, setUserData] = useState([]); // State to hold user data array
     const [username, setUsername] = useState('');
-    const location = useLocation(); 
+    const location = useLocation();
     const [addNewProfile, setAddNewProfile] = useState(false);
-    const [showMainContian, setShowMainContian] = useState(true);
+    const [showMainContainer, setShowMainContainer] = useState(true);
     const [chatData, setChatData] = useState(null);
     const [friendId, setFriendId] = useState(''); // State to capture the friend ID input
     const [msg, setMessage] = useState('');
+    const [liveChatFrdName ,setlivechatFrd]=useState('');
 
     useEffect(() => {
         if (location.state && location.state.userData) {
@@ -42,13 +43,13 @@ const Home = () => {
         setShowProfile(!showProfile);
     };
 
-    const handleButtonClick = async (userId) => {
+    const handleButtonClick = async (userId,frdName) => {
         try {
             const response = await axios.get(`http://localhost:8080/chat/specificUser?chatId=${userId}`);
-            setShowMainContian(false);
+            setShowMainContainer(false);
             setAddNewProfile(false);
+            setlivechatFrd(frdName);
             setChatData(response.data);
-            console.log("hello", chatData);
             console.log(response.data); // Handle response from backend as needed
         } catch (error) {
             console.error('Error sending userId:', error);
@@ -60,17 +61,28 @@ const Home = () => {
     };
 
     const handleSendMessage = async () => {
-        // Logic to send the message
-        // Don't send empty messages
+        if (!msg.trim()) return; // Don't send empty messages
         console.log(`Sending message: ${msg} to friend: ${friendId}`);
-        // Reset message input after sending
-        setMessage('');
+        try {
+            const response = await axios.post('http://localhost:8080/chat/send', {
+                chatId: chatData.frdsEntityId,
+                senderId: username,
+                senderMessage: msg
+            });
+            setChatData(response.data);
+            console.log(response.data);
+        } catch (error) {
+            alert(error.response.data);
+        }
+        setMessage(''); // Reset message input after sending
     };
 
     const handleCloseChat = () => {
         setChatData(null);
-        setShowMainContian(true);
+        setShowMainContainer(true);
     };
+
+   
 
     return (
         <div>
@@ -92,8 +104,8 @@ const Home = () => {
             </header>
             <Container fluid className='mt-4'>
                 <Row>
-                    <Col md={4} className='p-3 bg-light' style={{ borderRight: '1px solid #ddd' }}>
-                        <Card className='w-100' style={{ border: 'none' }}>
+                    <Col md={4} className='p-3' style={{ borderRight: '1px solid #ddd', backgroundColor: '#f8f9fa', minHeight: '100vh' }}>
+                        <Card className='w-100 shadow'>
                             <Card.Body>
                                 <Card.Title>Chats</Card.Title>
                                 <ListGroup variant="flush">
@@ -101,30 +113,32 @@ const Home = () => {
                                         <ListGroup.Item
                                             key={user.id}
                                             action
-                                            onClick={() => handleButtonClick(user.id)}
+                                            onClick={() => handleButtonClick(user.id,(username!==user.frdId)?user.frdId:user.userId)}
+                                            className="rounded-pill mb-2"
+                                            style={{ cursor: 'pointer', backgroundColor: '#e9ecef' }}
                                         >
-                                            {user.userId === username
-                                                ? `User: ${user.frdId}`
-                                                : `User: ${user.userId}`}
+                                            {user.userId.toUpperCase() === username.toUpperCase()
+                                                ? ` ${user.frdId}`
+                                                : ` ${user.userId}`}
                                         </ListGroup.Item>
                                     ))}
                                 </ListGroup>
-                                <Button onClick={handleAddNew}>Add new chat</Button>
+                                <Button onClick={handleAddNew} className="mt-3 " variant="info">Add new chat</Button>
                             </Card.Body>
                         </Card>
                     </Col>
                     <Col md={8} className='p-3'>
                         {!addNewProfile ? (
                             <div className='main-content'>
-                                {showMainContian && (
+                                {showMainContainer && (
                                     <div>
                                         <h5>Welcome to Chat App</h5>
                                         <p>Select a user to start chatting.</p>
                                     </div>
                                 )}
-                                
                                 {chatData && (
-                                    <div style={{ backgroundColor: '#f0f0f0', padding: '20px', borderRadius: '8px', position: 'relative' }}>
+                                    <div className='p-5' style={{ backgroundColor: '#f0f0f0', padding: '20px', borderRadius: '8px', position: 'relative' }}>
+                                        <h2>{liveChatFrdName}</h2>
                                         <Button
                                             onClick={handleCloseChat}
                                             style={{
@@ -139,40 +153,27 @@ const Home = () => {
                                         >
                                             <IoClose />
                                         </Button>
-                                        {/* Iterate over the keys of the message object */}
-                                        {Object.keys(chatData.message).map((friend) => (
-                                            <div key={friend}>
-                                                {friend !== username ? (
-                                                    <>
-                                                        <h2>{friend}</h2>
-                                                        <ul>
-                                                            {chatData.message[friend].map((message, index) => (
-                                                                <li key={index} style={{ textAlign: 'left' }}>{message}</li>
-                                                            ))}
-                                                        </ul>
-                                                    </>
-                                                ) : (
-                                                    <>
-                                                        <ul>
-                                                            {chatData.message[friend].map((message, index) => (
-                                                                <li key={index} style={{ textAlign: 'right' }}>{message}</li>
-                                                            ))}
-                                                        </ul>
-                                                        <InputGroup className='mb-3'>
-                                                            <FormControl
-                                                                type='text'
-                                                                placeholder='Send a message'
-                                                                value={msg}
-                                                                onChange={(e) => setMessage(e.target.value)}
-                                                            />
-                                                            <Button variant="primary" onClick={handleSendMessage}>
-                                                                <IoSend />
-                                                            </Button>
-                                                        </InputGroup>
-                                                    </>
-                                                )}
-                                            </div>
-                                        ))}
+                                        <div>
+                                            {chatData.message.map((message, index) => (
+                                                
+                                                <div key={index} className='' style={{textAlign:(message.userId.toUpperCase() !== username.toUpperCase()) ?  'left'  :  "right" }}>
+                                                   
+                                                    <p >{message.message}</p>
+                                                </div>
+                                                
+                                            ))}
+                                        </div>
+                                        <InputGroup className='mb-3 mt-3'>
+                                            <FormControl
+                                                type='text'
+                                                placeholder='Send a message'
+                                                value={msg}
+                                                onChange={(e) => setMessage(e.target.value)}
+                                            />
+                                            <Button variant="primary" onClick={handleSendMessage}>
+                                                <IoSend />
+                                            </Button>
+                                        </InputGroup>
                                     </div>
                                 )}
                             </div>
@@ -181,7 +182,7 @@ const Home = () => {
                                 <input
                                     type='text'
                                     placeholder='Enter Friend Id'
-                                    className='mb-3'
+                                    className='mb-3 bg-body-secondary'
                                     value={friendId}
                                     onChange={(e) => setFriendId(e.target.value)}
                                 />
