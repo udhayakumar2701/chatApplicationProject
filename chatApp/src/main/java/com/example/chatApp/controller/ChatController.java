@@ -43,16 +43,13 @@ public class ChatController {
 
     }
 
-    @GetMapping("/send")
+    @PostMapping("/send")
     public ResponseEntity<?> sendMessage(@RequestBody SendModel sendModel){
         System.out.println(sendModel.toString());
 
-
-//        Add the sending logic ?
-
+       return  messageService.saveMessage(sendModel);
 
 
-        return new ResponseEntity<>("",HttpStatus.OK);
     }
 
 }

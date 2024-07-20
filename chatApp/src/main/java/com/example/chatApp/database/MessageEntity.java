@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Entity
@@ -15,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MessageEntity {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,6 +25,9 @@ public class MessageEntity {
     Long frdsEntityId;
 
 
+    @ElementCollection
     @Column(name="message")
-    HashMap<String, ArrayList<String>> message;
+    List<Message> message;
+
+
 }

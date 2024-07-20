@@ -8,13 +8,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chatApp/src/main/java/com/example/chatApp/controller/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/chatApp/src/main/java/com/example/chatApp/controller/ChatController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chatApp/src/main/java/com/example/chatApp/database/MessageEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/chatApp/src/main/java/com/example/chatApp/database/MessageEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chatApp/src/main/java/com/example/chatApp/service/FriendsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/chatApp/src/main/java/com/example/chatApp/service/FriendsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chatApp/src/main/java/com/example/chatApp/service/MessageRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/chatApp/src/main/java/com/example/chatApp/repository/MessageRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chatApp/src/main/java/com/example/chatApp/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/chatApp/src/main/java/com/example/chatApp/service/MessageService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chatApp/target/classes/com/example/chatApp/controller/chatController.class" beforeDir="false" afterPath="$PROJECT_DIR$/chatApp/target/classes/com/example/chatApp/controller/chatController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chatApp/target/classes/com/example/chatApp/database/MessageEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/chatApp/target/classes/com/example/chatApp/database/MessageEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chatApp/target/classes/com/example/chatApp/service/FriendsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/chatApp/target/classes/com/example/chatApp/service/FriendsService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chatApp/target/classes/com/example/chatApp/service/MessageRepo.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/chatApp/target/classes/com/example/chatApp/service/MessageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/chatApp/target/classes/com/example/chatApp/service/MessageService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
