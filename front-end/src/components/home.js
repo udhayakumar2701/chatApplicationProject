@@ -5,6 +5,7 @@ import axios from 'axios';
 import { IoSend, IoClose } from 'react-icons/io5';
 
 const Home = () => {
+    
     const [showProfile, setShowProfile] = useState(false);
     const [userData, setUserData] = useState([]); // State to hold user data array
     const [username, setUsername] = useState('');
@@ -15,6 +16,31 @@ const Home = () => {
     const [friendId, setFriendId] = useState(''); // State to capture the friend ID input
     const [msg, setMessage] = useState('');
     const [liveChatFrdName ,setlivechatFrd]=useState('');
+    const [getChatWithID,setChatWithID]=useState(false);
+    const [getChat, setGetChat] = useState({
+        userId: '',
+        frdName: ''
+    });
+
+    useEffect(() => {
+        let interval='';
+        if(getChatWithID){
+            console.log("Interval"+getChat.userId)
+             interval = setInterval(async() => {
+            try {
+                const response = await axios.get(`http://localhost:8080/chat/specificUser?chatId=${getChat.userId}`);
+                setShowMainContainer(false);
+                setAddNewProfile(false);
+                setlivechatFrd(getChat.frdName);
+                setChatData(response.data);
+                console.log(response.data); // Handle response from backend as needed
+            } catch (error) {
+                console.error('Error sending userId:', error);
+            }
+        }, 1000)
+
+     }; return () => clearInterval(interval); // Cleanup interval on component unmount
+    }, [getChatWithID, getChat.userId,getChat.frdName]);
 
     useEffect(() => {
         if (location.state && location.state.userData) {
@@ -27,6 +53,7 @@ const Home = () => {
 
     const handleNewChat = async () => {
         console.log(username, friendId);
+       
         try {
             const response = await axios.post(`http://localhost:8080/chat/addNewFriend`, {
                 userId: username,
@@ -40,11 +67,16 @@ const Home = () => {
     };
 
     const toggleProfile = () => {
+        setChatWithID(false);
+
         setShowProfile(!showProfile);
     };
 
     const handleButtonClick = async (userId,frdName) => {
         try {
+            console.log(userId+frdName);
+            setChatWithID(true);
+            setGetChat({userId:userId,frdName:frdName});
             const response = await axios.get(`http://localhost:8080/chat/specificUser?chatId=${userId}`);
             setShowMainContainer(false);
             setAddNewProfile(false);
@@ -57,6 +89,8 @@ const Home = () => {
     };
 
     const handleAddNew = () => {
+        setChatWithID(false);
+
         setAddNewProfile(!addNewProfile);
     };
 
@@ -78,6 +112,7 @@ const Home = () => {
     };
 
     const handleCloseChat = () => {
+        setChatWithID(false);
         setChatData(null);
         setShowMainContainer(true);
     };
