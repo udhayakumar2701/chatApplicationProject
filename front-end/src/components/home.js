@@ -59,11 +59,25 @@ const Home = () => {
                 userId: username,
                 frdId: friendId
             });
+            handleAfterNewFrdAdd(username);
             console.log(response.data); // Handle response from backend as needed
         } catch (error) {
             alert(error.response.data);
             console.error('Error sending userId:', error);
         }
+    };
+
+    const handleAfterNewFrdAdd =async(userId)=>{
+        try {
+            const response = await axios.post(`http://localhost:8080/chat/fetchUserDetials/${userId}`
+            );
+            setUserData(response.data);
+            console.log(response.data); // Handle response from backend as needed
+        } catch (error) {
+            alert(error.response.data);
+            console.error('Error sending userId:', error);
+        }
+        return;
     };
 
     const toggleProfile = () => {

@@ -7,6 +7,7 @@ import com.example.chatApp.model.FriendModel;
 import com.example.chatApp.model.SendModel;
 import com.example.chatApp.repository.MessageRepo;
 import com.example.chatApp.service.FriendsService;
+import com.example.chatApp.service.LRService;
 import com.example.chatApp.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,11 +22,14 @@ public class ChatController {
 
    private final  MessageService messageService;
    private final FriendsService friendsService;
+   private  final LRService lrService;
 
     @Autowired
-    public ChatController(MessageService messageService,FriendsService friendsService) {
+    public ChatController(MessageService messageService,FriendsService friendsService,LRService lrService)
+     {
         this.messageService = messageService;
         this.friendsService=friendsService;
+        this.lrService=lrService;
     }
 
 
@@ -51,6 +55,11 @@ public class ChatController {
        return  messageService.saveMessage(sendModel);
 
 
+    }
+
+    @PostMapping("/fetchUserDetials/{userId}")
+    public ResponseEntity<?> fetchTheUserData(@PathVariable("userId") String userID){
+        return new  ResponseEntity<>(lrService.fetchAndMerge(userID),HttpStatus.OK);
     }
 
 }
